@@ -1,59 +1,28 @@
 HOST: http://www.nasedochazka.cz/
 
---- persons ---
+--- orgSchema ---
 ---
 Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
 ---
 --
-Práce se seznamem osob
-
+Seznam středisek
+Služby pro načítání a úpravy organizačního schématu
 --
-Seznam všech osob na které má přihlášený uživatel oprávnění
-GET /resources/persons
+Vrací lineární seznam všech středisek na které má přihlášený uživatel oprávnění.
+Kořen se pozná podle hodnoty "dominium" v položce type
+GET /resources/orgSchema/orgUnits
 < 200
 < Content-Type: application/json
 [
-  {
-    eTag: ""QnY8fTVSLit7I2A9WhNREUwCRgA.""
-      -- identifikátor osoby
-    id: "61420828be0845d"
-      -- identifikátor osoby v google contacts
-    idFull: "http://www.google.com/m8/feeds/contacts/test1%40nasedochazka.cz/base/61420828be0845d"
-      -- jméno, tituly apod.
-    prefN: "ing."
-    fName: "Hana"
-    lName: "Sedláčková"
-    sufN: ""
-      -- pracovní pozice
-    positions: [
-        {
-            -- osobní číslo pro tuto pozici, osoba může mít víc os.čísel
-            persNo: "875555"
-            -- odkaz na záznam popisu pracovní pozice
-            posId: 9
-            -- odkaz na záznam organizační jednotky do které pozice patří
-            unitId: 14
-            -- odkaz na pracovní kalendář pro tuto osobu na této pozici
-            wCalId: 54
-            -- začátek a konec platnosti přiřazení osoby na tuto pracovní pozici
-            validFrom: "2013-01-18T10:08:23.293+01:00"
-            expire: "2013-01-18T10:08:23.293+01:00"
-        }
-        {
-            persNo: "875555"
-            posId: 10
-            unitId: 15
-            wCalId: 55
-            validFrom: "2013-01-18T10:08:23.293+01:00"
-            expire: "2013-01-18T10:08:23.293+01:00"
-        }
-    ]
-      -- kontaktní informace
-    mail: "hana@mail.com"
-    mailEmrg: "hanka@mail.com"
-    skype: ""
-    tlf: "788 455 665"
-    tlfEmrg: "566 66 5555"
+  { 
+    id: 7,
+    name: "Firma",
+    -- odkaz na nadřízenou položku
+    parent: 6,
+    -- druh záznamu, možné hodnoty jsou dominium, firma, unit, container a team
+    type: "dominium",
+    -- příznak jestli má položka podřízené položky
+    children:true,
+    versionId: 111111
   }
-]
-
+] 
